@@ -575,7 +575,8 @@ namespace Svg
                     (!attr.Attribute.InAttributeDictionary || _attributes.ContainsKey(attr.Attribute.Name)))
                 {
                     object propertyValue = attr.Property.GetValue(this);
-                    string value = (string)attr.Property.Converter.ConvertTo(propertyValue, typeof(string));
+
+                    string value = null != propertyValue ? (string)attr.Property.Converter.ConvertTo(propertyValue, typeof(string)) : "";
 
                     forceWrite = false;
                     writeStyle = (attr.Attribute.Name == "fill");
